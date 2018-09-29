@@ -30,6 +30,7 @@ function ventas(codigo, descripcion, tipo, precio, cant){
 }
 
 function stockCero(){
+    let bandera = false;
     for(let i of datosT){
         if(i.stock == 0){
             console.log("Codigo: " + i.codigo + "\n" +
@@ -38,7 +39,11 @@ function stockCero(){
                         "Precio Compra: " + i.precioCompra + "\n" +
                         "Precio Venta: " + i.precioVenta + "\n" +
                         "Stock: " + i.stock + "\n");
+            bandera = true;
         }
+    }
+    if(bandera == false){
+        console.log("No hay datos de stock en cero");
     }
 }
 
@@ -109,6 +114,7 @@ function menu(){
     let opc = parseInt(prompt('1- Agregar producto \n2- Modificar Stock \n3- Registrar venta y reducir Stock \n4- Mostrar Promedio de ventas realizadas \n5- Mostrar productos con stock 0 \n6- Salir del programa'));
     switch (opc) {
         case 1:
+            console.log('------------------------------------------------------');
             let codigo1 = parseInt(prompt("Ingrese el codigo del producto"));
             if(comprobarCodigo(codigo1)){
                 let descripcion1 = prompt("Ingrese la descripcion del producto");
@@ -121,10 +127,12 @@ function menu(){
             } else{
                 console.log("El codigo del producto ya esta ingresado");
             }
+            console.log('------------------------------------------------------');
             menu();
             break;
         case 2:
             if(datosT.length != 0){
+                console.log('------------------------------------------------------');
                 console.log("--Que datos desea modificar (stock)--");
                 mostrarDatos();
                 let codigo2 = parseInt(prompt("Que dato desea modificar"));
@@ -133,6 +141,7 @@ function menu(){
                 } else{
                     console.log("Producto no encontrado");
                 }
+                console.log('------------------------------------------------------');
             } else{
                 console.log("No tiene datos!!!");
             }
@@ -140,6 +149,7 @@ function menu(){
             break;
         case 3:
             if(datosT.length != 0){
+                console.log('------------------------------------------------------');
                 console.log("--Que producto desea vender (stock)--");
                 mostrarDatos();
                 let codigo3 = parseInt(prompt("Que producto desea vender"));
@@ -149,18 +159,23 @@ function menu(){
                 } else{
                     console.log("Producto no encontrado");
                 }
+                console.log('------------------------------------------------------');
             } else{
                 console.log("No tiene datos!!!");
             }
             menu();
             break;
         case 4:
+            console.log('------------------------------------------------------');
             console.log("El promedio de ventas es " + promVenta());
+            console.log('------------------------------------------------------');
             menu();
             break;
         case 5:
             if(datosT.length != 0){
+                console.log('------------------------------------------------------');
                 stockCero();
+                console.log('------------------------------------------------------');
             } else{
                 console.log("No tiene datos!!!");
             }
